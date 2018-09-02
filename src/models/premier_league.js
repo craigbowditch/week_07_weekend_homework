@@ -1,4 +1,5 @@
 const Request = require('../helpers/request.js');
+const PubSub = require('../helpers/pub_sub.js')
 
 const PremierLeague = function (url) {
   this.teams = null;
@@ -10,11 +11,16 @@ const PremierLeague = function (url) {
 PremierLeague.prototype.getData = function () {
   const request = new Request(this.url);
   request.get().then((data) => {
-    console.log(data);
+    this.handData(data);
   }).catch((err) => {
     console.error(err);
 
   })
+
+  PremierLeague.prototype.handData = function(data){
+    this.teams = data;
+    console.log(this.teams);
+  }
 };
 
 
