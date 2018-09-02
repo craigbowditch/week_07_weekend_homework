@@ -19,7 +19,7 @@ PremierLeague.prototype.getData = function () {
 
   PremierLeague.prototype.handData = function(data){
     this.teams = data;
-    console.log(this.teams);
+    PubSub.publish('PremierLeague:data-ready', this.teams);
   }
 };
 
